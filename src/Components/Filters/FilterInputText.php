@@ -42,12 +42,14 @@ class FilterInputText extends FilterBase
     {
         return collect()
             ->put('selectAttributes', new ComponentAttributeBag([
-                'wire:model'                     => 'filters.input_text_options.' . $field,
-                'wire:input.live.debounce.600ms' => 'filterInputTextOptions(\'' . $field . '\', $event.target.value, \'' . $title . '\')',
+                'wire:model'         => 'filters.input_text_options.' . $field,
+                'wire:keydown.enter' => 'filterInputTextOptions(\'' . $field . '\', $event.target.value, \'' . $title . '\')',
+                'wire:keydown.tab'   => 'filterInputTextOptions(\'' . $field . '\', $event.target.value, \'' . $title . '\')',
             ]))
             ->put('inputAttributes', new ComponentAttributeBag([
-                'wire:model'                     => 'filters.input_text.' . $field,
-                'wire:input.live.debounce.600ms' => 'filterInputText(\'' . $field . '\', $event.target.value, \'' . $title . '\')',
+                'wire:model'         => 'filters.input_text.' . $field,
+                'wire:keydown.enter' => 'filterInputText(\'' . $field . '\', $event.target.value, \'' . $title . '\')',
+                'wire:keydown.tab'   => 'filterInputText(\'' . $field . '\', $event.target.value, \'' . $title . '\')',
             ]))
             ->toArray();
     }
